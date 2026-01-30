@@ -13,7 +13,7 @@ Iron Hack Data Analysis Bootcamp
 Cohort: DAFT NOV2025
 
 
-## Professional project: 
+## Introduction 
 
 
 I have an interdisciplinary background in Economic and Social Administration, Cultural Anthropology, and administrative management teaching. 
@@ -35,6 +35,7 @@ Unique value: Translating (complex?) social realities into data-driven insights 
 → National mapping with PACA region focus (I live in Aix-en-Provence, near Marseille)
 → Kind of sociological analysis, using datasets.
 
+**Article from Crédoc for the French Ministry of Culture (2024) :** [Link](https://www.culture.gouv.fr/espace-documentation/statistiques-ministerielles-de-la-culture2/publications/collections-de-synthese/culture-etudes-2007-2025/les-sorties-culturelles-des-francais-et-leurs-pratiques-en-ligne-en-2023-cinema-concert-et-theatre-ce-2024-2)
 
 **Tools:**
 Python
@@ -68,7 +69,7 @@ This project combines three official French datasets:
 1. **BASILIC Cultural Venues Database**
    - Source: French Ministry of Culture
    - Year: 2025 (extracted 09/05/2025)
-   - Records: ~50,000 cultural venues
+   - Records: ~90,000 cultural venues
    - [Link](https://data.culture.gouv.fr/)
 
 2. **Legal Population Data**
@@ -132,15 +133,17 @@ SQL is the universal query language of relational database management systems (D
 
 ## Analysis
 
--->
+Based on the EDA
 
 
-## Visualization
---> With Tableau (or Power BI ?)
+### Visualization
+--> With Tableau 
 
 
-
-## Interpretation
+### Interpretation
 
 --> Perspectives (: research, time, lack of layers of parameters, professional use, further aproach)
 --> Oral présentation : Canvas
+
+### Trello board
+--> [Link](https://trello.com/invite/b/6973a65bb84b1fd366fd8881/ATTI1b9d68b4e62515f669dd50a7def785b87936B652/culture-loom)
