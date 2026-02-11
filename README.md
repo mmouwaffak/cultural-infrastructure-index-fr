@@ -1,149 +1,253 @@
 # Cultural Loom
 
+**Analysis of Cultural Accessibility and Territorial Inequalities in France**
 
+---
 
-**Project: Analysis of cultural accessibility and territorial inequalities in France**
+## Project Overview
 
+**Author:** Meriem MOUWAFFAK  
+**Program:** IronHack Data Analytics Bootcamp (DAFT NOV2025)  
+**Certification:** RNCP Data Analyst (Bloc 1)  
+**Project Type:** Final certification project
 
-**Author: MOUWAFFAK Meriem**
-
-
-Iron Hack Data Analysis Bootcamp
-
-Cohort: DAFT NOV2025
+This project analyzes the cultural infrastructure distribution across French territories to identify patterns of inequality and inform evidence-based cultural policy. 
+Using official government datasets from the Ministry of Culture and INSEE, the analysis combines geographic, demographic, and socio-economic factors to examine cultural accessibility.
 
 
 ## Introduction 
 
+# Professional Context
 
-I have an interdisciplinary background in Economic and Social Administration, Cultural Anthropology, and administrative management teaching. 
+I bring an interdisciplinary background combining:
+- Economic and Social Administration
+- Cultural Anthropology
+- Administrative management teaching
 
-Combining social science expertise with technical data skills to serve the cultural and social economy sectors. 
+**Career Objective:** Leverage data analytics for social impact in cultural institutions, ESS (Économie Sociale et Solidaire) organizations, or public policy roles focused on cultural access and territorial equity.
 
+**Unique Value Proposition:** Translating complex social realities into data-driven insights that serve mission-driven organizations.
 
-Experienced in administrative systems, territorial development frameworks, and cultural analysis.
-Seeking to leverage data analytics for social impact in cultural institutions, ESS organizations, or public policy roles focused on cultural access and territorial equity.
+---
 
-Unique value: Translating (complex?) social realities into data-driven insights that serve mission-driven organizations.
+##  Research Questions
 
-→ A field requiring expertise, analytics capacities, data analysis
+This analysis addresses six core research questions:
 
+1. **Geographic Distribution:** How is cultural supply distributed across French territories?
+2. **Urban vs Rural:** Are there significant disparities between urban and rural areas?
+3. **Socio-Economic Correlation:** Is there a relationship between territorial wealth and cultural supply?
+4. **Typological Diversity:** What types of cultural venues exist and how are they distributed?
+5. **Regional Focus:** How does PACA compare to national averages?
+6. **Music Infrastructure:** How is music infrastructure distributed, and what proportion holds official SMAC recognition?
 
-## Idea : an analysis of cultural infrastructure in France
-
-
-→ National mapping with PACA region focus (I live in Aix-en-Provence, near Marseille)
-→ Kind of sociological analysis, using datasets.
-
+---
 **Article from Crédoc for the French Ministry of Culture (2024) :** [Link](https://www.culture.gouv.fr/espace-documentation/statistiques-ministerielles-de-la-culture2/publications/collections-de-synthese/culture-etudes-2007-2025/les-sorties-culturelles-des-francais-et-leurs-pratiques-en-ligne-en-2023-cinema-concert-et-theatre-ce-2024-2)
 
+
+---
+
+##  Data Sources
+
+### Reference Tables
+
+| Dataset | Source | Year | Records | Purpose |
+|---------|--------|------|---------|---------|
+| **BASILIC** | Ministry of Culture | 2025 | 88,025 | Cultural venues database |
+| **Population** | INSEE | 2021 | 35,000 | Commune demographics |
+| **FILOSOFI** | INSEE | 2021 | 30,000 | Income & poverty statistics |
+| **SMAC** | Web API | 2025 | 91 | Official music venue labels |
+| **Dept. Surfaces** | Web scraping | 2024 | 100 | Geographic density (km²) |
+
+**Official Sources:**
+- BASILIC: [data.culture.gouv.fr](https://data.culture.gouv.fr/)
+- INSEE Population: [INSEE Statistics](https://www.insee.fr/fr/statistiques/7739582)
+- FILOSOFI: [INSEE FILOSOFI](https://www.insee.fr/fr/statistiques/7233950)
+
+
+### Data Quality - Notes
+
+- **Temporal lag:** 4-year gap between population/income (2021) and venues (2025) is acceptable due to low demographic variation
+- **FILOSOFI coverage:** IRIS-level data available only for municipalities >5,000 inhabitants
+- **GDPR:** All datasets are public, aggregated, and non-personal
+- **Data integrity:** 5,005 BASILIC records (5.7%) excluded due to unmatched commune codes
+
+---
+
+## Technology
+
 **Tools:**
-Python
-MySQL
-Tableau (visualization)
 Github
 Trello
+Python
+MySQL
+BigQuerry
+API Framework (Fast API)
+Tableau (visualization)
+
+### Python Libraries
+
+- **Data Manipulation:** pandas, numpy
+- **Web Scraping:** BeautifulSoup, requests
+- **Machine Learning:** scikit-learn (Random Forest Regressor)
+- **Database:** mysql-connector-python, SQLAlchemy
+- **API:** Flask
+
+--
+
+## Methodology
+
+1. **Business Understanding:** Cultural accessibility as social equity indicator
+2. **Data Understanding:** Evaluation of 5 official datasets
+3. **Data Preparation:** Normalization, web scraping, database design
+4. **Modeling:** Statistical analysis + Random Forest regression
+5. **Evaluation:** R² assessment, correlation validation
+6. **Deployment:** BigQuery analytics + REST API
 
 
+---
 
-## Exploratory Data Analysis
+##  Key Technical Achievements
 
-### Research Questions:
-1. Geographic Distribution: How is cultural supply distributed across French territories?
-2. Urban vs Rural: Are there significant disparities between urban and rural areas?
-3. Socio-Economic Correlation: Is there a relationship between territorial wealth and cultural supply?
-4. Typological Diversity: What types of cultural venues exist and how are they distributed?
-5. PACA Regional Focus: How does PACA compare to national averages?
+### 1. Data Preparation
 
-### Datasets
+**BASILIC Normalization:**
+- Handled 12 multi-commune records via MySQL view
+- Department code extraction from postal codes (special cases: Corsica 2A/2B, overseas 971-976)
 
-**Public datasets:**
-Free, legal, governmental sources (Ministry of Culture, INSEE, data.gouv.fr …)
-**Advantage:** RGPD compatible
-**Limit :** dates of collection of the data
+**Web Scraping:**
+- SMAC venues: BeautifulSoup HTML parsing (91 venues extracted)
+- Department surfaces: Wikipedia table scraping with French number format handling (100 departments)
+- Challenges: rowspan/colspan tables, UTF-8 encoding, inconsistent formats
 
-### Data Sources
+### 2. Database Design
+**Architecture:** relational database
+- Hierarchical structure: regions -> departments -> communes -> basilic
+- Core tables: 7 tables with foreign key relationships
 
-This project combines three official French datasets:
+### 3. Machine Learning Analysis
 
-1. **BASILIC Cultural Venues Database**
-   - Source: French Ministry of Culture
-   - Year: 2025 (extracted 09/05/2025)
-   - Records: ~90,000 cultural venues
-   - [Link](https://data.culture.gouv.fr/)
+**Model:** Random Forest Regressor
+- **Features:** Population, Surface Area
+- **Target:** Music density per 100,000 inhabitants
+- **Dataset:** 96 departments (76 train / 20 test)
 
-2. **Legal Population Data**
-   - Source: INSEE (National Statistics Institute)
-   - Year: 2021 (published Dec 2023)
-   - Records: ~35,000 communes
-   - [Link](https://www.insee.fr/fr/statistiques/7739582)
+**Results:**
+- **R² Score:** -0.397
+- **MAE:** 0.55 venues per 100k
+- **Feature Importance:** Population 47%, Surface Area 53%
 
-3. **FILOSOFI Income and Poverty Data**
-   - Source: INSEE
-   - Year: 2021 (published Jun 2024)
-   - Records: ~30,000 communes
-   - [Link](https://www.insee.fr/fr/statistiques/7233950)
+**Scientific Interpretation:**  
+The negative R² is not a failure but a key discovery: it proves that music infrastructure distribution cannot be predicted by demographics or geography. This validates the hypothesis that cultural inequality is policy-driven, requiring political intervention rather than demographic growth.
 
+### 4. BigQuery Implementation
+- Denormalized analytics table with partitioning (load_date) and clustering (dept_code, region_code)
+- 5 analytical queries: top departments, venue types, cultural domains, geographic hotspots
 
-Add different scales :
-
-4. **Communes Reference Table**
-Source: Derived from INSEE COG 2025 + Population data
-Records: ~35,000 communes
-
-
-5. **Departments Reference Table**
-Source: Derived from INSEE COG 2025
-Records: 101 departments (96 metropolitan + 5 overseas)
-Note on special codes: 2A/2B (Corsica), 971-976 (DOM)
-
-6. **Regions Reference Table**
-Source: Derived from INSEE COG 2025
-Records: 18 regions (13 metropolitan + 5 overseas)
-Note: Current administrative structure since 2016 reform
-     
-
-**Context elements :** 
-
-- 4-years lag between population/income (2021) and cultural venues (2025) is acceptable due to low demographic variationin the time interval.
-
-- Disposable income better reflects actual living standards because it accounts for taxes and social transfers, making it more relevant for socio-economic comparisons at the IRIS level.
-
-- In FiLoSoFi, the poverty threshold is set at 60% of the metropolitan median standard of living.
-
-- The data cover IRIS areas for municipalities with at least 5,000 inhabitants in metropolitan France, Martinique, and Réunion. Up to the 2019 vintage, the data covered IRIS areas for municipalities with 10,000 inhabitants or more. The indicators are subject to statistical confidentiality rules to protect data privacy. The proposed indicators are non-additive (they cannot be aggregated by summation). The 2021 data are provided using the geography in force on 1 January 2022.
-
-- Also, observations on situation or changes in income or poverty at the local level should be interpreted with caution.
-
-
-
-## Database design
-
-### Entity Relationship Diagram (ERD)
- ERDs are a specialized type of flowchart that conveys visual representation of how items in a database relate to each other.
-
-### Design, joins
-
-
-
-## Structure Query Language (SQL)
-SQL is the universal query language of relational database management systems (DBMS) 
-
+### 5. REST API Development
+**Framework:** Fast API
+**Endpoints:**
+- `/venues` - Cultural venue data with filters
+- `/departments` - Aggregated statistics by department
+- `/stats` - National-level summary statistics :
+    • `/stats/commune/{commune_code}`: Returns commune-level indicators (venue count, venues per 1,000 inhabitants, population, and income metrics when available).
+    • `/stats/density`: Ranks communes by cultural density (venues per 1,000 inhabitants), with a minimum population threshold.
+    • `/stats/dept/{dept_code}`: Provides aggregated indicators at department level (total venues, population, venues per 1,000 inhabitants; optionally income aggregates if defined).
 
 
 ## Analysis
 
-Based on the EDA
+### 1. Cultural Infrastructure is Policy-Driven
+**Negative R² = -0.397** proves that population and geography do **not predict** cultural infrastructure distribution. Cultural accessibility is a **political choice**, not a demographic inevitability.
+
+### 2. Territorial Inequality
+- **Urban concentration:** Paris 3,000+ venues
+- **Rural deserts:** Departments <100 venues
+- **Paradox:** Rural areas sometimes show higher per-capita density due to smaller populations
+
+### 3. SMAC Recognition Gap
+- **Total music venues:** 632 (BASILIC)
+- **SMAC labels:** 91 (14.4% recognition rate)
+- **Coverage:** 61 departments (60%) have at least one SMAC venue
+- **Insight:** Significant gap between infrastructure existence and quality recognition
+
+### 4. Socio-Economic Correlation
+- **Median income** better predictor than Gini index
+- Absolute wealth matters more than inequality for cultural investment
 
 
-### Visualization
---> With Tableau 
+## GDPR
 
+This project is  GDPR compliant:
 
-### Interpretation
+- **Lawfulness:** Official government sources only  
+- **Purpose Limitation:** Cultural analysis only (no commercial use)  
+- **Data Minimization:** Public institutional data only  
+- **Transparency:** All sources documented and cited  
+- **No Personal Data:** BASILIC = public institutions, INSEE/FILOSOFI = aggregated statistics (>5,000 inhabitants)
 
---> Perspectives (: research, time, lack of layers of parameters, professional use, further aproach)
---> Oral présentation : Canvas
+**References:**
+- [EU GDPR Regulation](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng)
+- [CNIL Guide (French)](https://www.cnil.fr/fr/comprendre-le-rgpd)
 
-### Trello board
+## Business Value
+
+### For Policymakers
+- Identification of "music deserts" requiring intervention
+- Data-driven SMAC label expansion prioritization
+- Quantified territorial inequality patterns
+
+### For Cultural Institutions
+- Geographic gap analysis for venue development
+- Regional specialization understanding
+- Benchmarking tools for density assessment
+
+### For Social Economy Organizations
+- Statistical evidence for equity advocacy
+- Proof that inequality is systemic, not natural
+- Actionable insights for mission-driven projects
+
+---
+
+## Limitations and Future Work
+
+### Current Limitations
+1. **Private venues excluded:** BASILIC contains only public infrastructure
+2. **Temporal lag:** 4-year gap (2021 demographics vs 2025 venues)
+3. **Small commune data:** IRIS income data limited to cities >5,000 inhabitants
+4. **Correlation only:** No causal inference (requires quasi-experimental designs)
+
+### Future Research Directions
+1. **Private venue integration:** Partnership with cultural associations for comprehensive data
+2. **Time-series analysis:** Track evolution 2015-2025 to measure policy impacts
+3. **Causal inference:** Natural experiments to measure policy effectiveness
+4. **Enhanced ML:** Add features (education, transport, tourism, historical investment)
+5. **Accessibility metrics:** Travel time, public transport, pricing, opening hours
+
+---
+
+## Visualizations
+
+**Tableau Public Dashboard:** [Link to be added]
+
+---
+
+##  References
+
+### Data Sources
+- French Ministry of Culture. (2025). BASILIC Cultural Venues Database. https://data.culture.gouv.fr/
+- INSEE. (2023). Populations légales 2021. https://www.insee.fr/fr/statistiques/7739582
+- INSEE. (2024). FILOSOFI - Année 2021. https://www.insee.fr/fr/statistiques/7233950
+
+### Context Research
+- Observatoire des inégalités. (2024). L'accès pour tous à la culture. https://www.inegalites.fr/acces-pour-tous-a-la-culture
+- Acteurs Publics. (2024). Le fossé entre urbains et ruraux se creuse. https://acteurspublics.fr/articles/sondage-exclusif-pour-lacces-a-la-culture-le-fosse-entre-urbains-et-ruraux-se-creuse/
+
+### GDPR Compliance
+- European Union. (2016). GDPR Regulation 2016/679. https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng
+- CNIL. (2024). Comprendre le RGPD. https://www.cnil.fr/fr/comprendre-le-rgpd
+
+---
+
+## Trello board
 --> [Link](https://trello.com/invite/b/6973a65bb84b1fd366fd8881/ATTI1b9d68b4e62515f669dd50a7def785b87936B652/culture-loom)
