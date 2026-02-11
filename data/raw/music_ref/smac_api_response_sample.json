@@ -1,0 +1,92 @@
+[
+  {
+    "structure": "Scène Nationale",
+    "nom1": "L’Hexagone  - Scène Nationale",
+    "nom2": null,
+    "adresse1": "24, rue des Aiguinards",
+    "adresse2": null,
+    "cp": 38240,
+    "ville": "MEYLAN",
+    "longitude": "5.764283",
+    "latitude": "45.205983",
+    "coordonnees_geoloc": "45.205983,5.764283",
+    "coordonnees_ban": "45.206601, 5.763817",
+    "coordonnees_finales": {
+      "lon": 5.764283,
+      "lat": 45.205983
+    },
+    "region": "Auvergne-Rhône-Alpes"
+  },
+  {
+    "structure": "SMAC",
+    "nom1": "Le 106",
+    "nom2": "106 REM",
+    "adresse1": "Quai Jean de Béthencourt",
+    "adresse2": null,
+    "cp": 76100,
+    "ville": "ROUEN",
+    "longitude": null,
+    "latitude": null,
+    "coordonnees_geoloc": null,
+    "coordonnees_ban": "49.434994, 1.09277",
+    "coordonnees_finales": {
+      "lon": 1.09277,
+      "lat": 49.434994
+    },
+    "region": "Normandie"
+  },
+  {
+    "structure": "Opéra en région",
+    "nom1": "Opéra National du Rhin",
+    "nom2": null,
+    "adresse1": "19 place de la Broglie",
+    "adresse2": "B.P. 320",
+    "cp": 67008,
+    "ville": "STRASBOURG",
+    "longitude": "7.749568",
+    "latitude": "48.58496000000001",
+    "coordonnees_geoloc": "48.58496000000001,7.749568",
+    "coordonnees_ban": null,
+    "coordonnees_finales": {
+      "lon": 7.749568,
+      "lat": 48.58496000000001
+    },
+    "region": "Grand Est"
+  },
+  {
+    "structure": "SMAC",
+    "nom1": "Le Pannonica",
+    "nom2": "NAJA Association Nantes Jazz Action",
+    "adresse1": "9 Rue Basse Porte",
+    "adresse2": null,
+    "cp": 44000,
+    "ville": "NANTES",
+    "longitude": null,
+    "latitude": null,
+    "coordonnees_geoloc": null,
+    "coordonnees_ban": "47.221054, -1.558417",
+    "coordonnees_finales": {
+      "lon": -1.558417,
+      "lat": 47.221054
+    },
+    "region": "Pays de la Loire"
+  },
+  {
+    "structure": "SMAC",
+    "nom1": "La Clef",
+    "nom2": "Association pour la culture, les loisirs et la formation",
+    "adresse1": "46, rue de Mareil",
+    "adresse2": null,
+    "cp": 78100,
+    "ville": "SAINT-GERMAIN-EN-LAYE",
+    "longitude": null,
+    "latitude": null,
+    "coordonnees_geoloc": null,
+    "coordonnees_ban": "48.894016, 2.088918",
+    "coordonnees_finales": {
+      "lon": 2.088918,
+      "lat": 48.894016
+    },
+    "region": "Île-de-France"
+  }
+]
